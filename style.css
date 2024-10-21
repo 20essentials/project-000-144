@@ -1,0 +1,190 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+body {
+  height: 100dvh;
+  background-color: #000;
+  background-size: 20vw;
+  background-image: url('assets/pattern.avif');
+
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-color: #000a;
+  }
+}
+
+.cube {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform-origin: 100% 100%;
+  animation: rotarCube 10s linear infinite alternate both;
+
+  @media (width <=1111px) {
+    width: 100px;
+    height: 100px;
+  }
+
+  .container-chiqui {
+    width: 200%;
+    height: 200%;
+    position: absolute;
+
+    .new-cube {
+      position: absolute;
+      width: 12.5%;
+      /* 50px en porcentaje relativo al contenedor */
+      height: 12.5%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-100%, -100%);
+
+      .new-side {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: red;
+
+        &:nth-child(1) {
+          top: 0;
+          left: 50%;
+          transform: rotate(45deg) skew(-15deg, -15deg);
+          background-color: #0000ff90;
+        }
+
+        &:nth-child(2) {
+          top: 78%;
+          /* 39px -> 78% en relación al tamaño de .new-cube */
+          left: 4%;
+          /* 2px -> 4% en relación al tamaño de .new-cube */
+          transform: rotate(15deg) skew(15deg, 15deg);
+          background-color: #0000ff70;
+        }
+
+        &:nth-child(3) {
+          top: 78%;
+          /* 39px -> 78% */
+          left: 94%;
+          /* 47px -> 94% */
+          transform: rotate(-15deg) skew(-15deg, -15deg);
+          background-color: #0000ff70;
+        }
+      }
+    }
+
+  }
+
+  .side {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      background-color: inherit;
+    }
+
+    &::before {
+      width: 75%;
+      height: 75%;
+    }
+
+    &::after {
+      width: 50%;
+      height: 50%;
+    }
+
+    &:nth-child(1) {
+      top: 0;
+      left: 50%;
+      transform: rotate(45deg) skew(-15deg, -15deg);
+      background-color: #0000ff90;
+
+      &::before,
+      &::after {
+        right: 0;
+        bottom: 0;
+      }
+    }
+
+    &:nth-child(2) {
+      top: 77.5%;
+      /* 155px -> 77.5% en relación al tamaño del cubo */
+      left: 5.5%;
+      /* 11px -> 5.5% */
+      transform: rotate(15deg) skew(15deg, 15deg);
+      background-color: #0000ff70;
+
+      &::before,
+      &::after {
+        right: 0;
+        top: 0;
+      }
+    }
+
+    &:nth-child(3) {
+      top: 77.5%;
+      /* 155px -> 77.5% */
+      left: 95%;
+      /* 190px -> 95% */
+      transform: rotate(-15deg) skew(-15deg, -15deg);
+      background-color: #0000ff70;
+
+      &::before,
+      &::after {
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+}
+
+@keyframes rotarCube {
+  0% {
+    transform: translate(-100vw, -100%) rotate(-720deg);
+  }
+
+  25%,
+  75% {
+    transform: translate(-100%, -100%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(100vw, -100%) rotate(720deg);
+  }
+}
+
+@keyframes rotarCubeMobile {
+  0% {
+    transform: translate(-100vw, -100%) rotate(-720deg);
+  }
+
+  25%,
+  75% {
+    transform: translate(-100%, -100%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(100vw, -100%) rotate(720deg);
+  }
+}
